@@ -1,5 +1,10 @@
-URL = "https://tradefinder.in/market-pulse"  # Specifically targeting Market Pulse scanner
+import os
+from dotenv import load_dotenv
+
+load_dotenv()  # Loads credentials from .env file — never hardcode secrets!
+
+URL = "https://tradefinder.in/market-pulse"
 SCRAPE_INTERVAL = 60  # seconds
 
-TELEGRAM_TOKEN = "8535804477:AAFwoztKWVlrgcPwLhn6JGyx22GLOK-dmas"
-TELEGRAM_CHAT_ID = "1222295488"
+TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN", "")
+TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID", "")

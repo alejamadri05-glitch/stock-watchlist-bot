@@ -1,6 +1,6 @@
 from scraper import init_driver, get_stock_list
 from utils import save_stocks, load_previous, detect_changes, safe_update
-from tradingview import add_stocks
+from tradingview import add_stocks, remove_stocks
 from notifier import send_telegram_message
 from config import URL, SCRAPE_INTERVAL
 
@@ -78,6 +78,12 @@ def run():
                     now = datetime.now().strftime("%H:%M:%S")
                     if not send_telegram_message(f"⏱ {now}\n❌ Removed:\n" + "\n".join(removed)):
                         logging.warning("Telegram notification failed for removed stocks")
+
+                    # Wire removal into TradingView
+                    remove_success = safe_update(driver, removed, remove_stocks)
+                    if not remove_success:
+                        logging.error("Failed to remove stocks from TradingView")
+                        update_success = False
 
                 # 🧠 State Safety Check
                 if update_success:

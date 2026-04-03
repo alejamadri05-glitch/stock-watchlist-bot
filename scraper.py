@@ -47,6 +47,6 @@ def get_stock_list(driver, url):
             if name:
                 stocks.append(name)
 
-    return list(set(stocks))  # remove duplicates
+    return list(dict.fromkeys(stocks))  # order-preserving deduplication
 
 

@@ -3,6 +3,9 @@ __pycache__/
 *.pyc
 .DS_Store
 
+# Secrets — NEVER commit this!
+.env
+
 # Logs
 logs/
 app.log
