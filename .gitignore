@@ -1,0 +1,14 @@
+# Virtual Environment and Cache
+__pycache__/
+*.pyc
+.DS_Store
+
+# Logs
+logs/
+app.log
+
+# Bot profile and session cookies (DO NOT SHARE THESE!)
+bot_profile/
+
+# HTML Dumps
+dom_dump.html
