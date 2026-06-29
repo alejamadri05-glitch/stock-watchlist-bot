@@ -154,11 +154,14 @@ pill(bus_lx, BUS_Y + 0.46,
      'V_out (0–10 V)  —  alimenta los comparadores de alarma',
      '#1E8449', ec='#145A32', fs=9)
 
-# ── ALARMAS section header ────────────────────────────────────────────────────
-sec_header(0.4, 6.98, 14.8, 0.46,
-           '#C0392B', '#C0392B',
-           'ETAPA DE ALARMAS (FUERA DE RANGO NORMAL)',
-           '#922B21')
+# ── ALARMAS section header — horizontal rule so green arrows don't cross a box ─
+DIV_Y = CMP_CY + CMP_H / 2 + 0.40   # just above comparator tops
+ax.plot([0.35, 15.4], [DIV_Y, DIV_Y], color='#C0392B', lw=2.0, zorder=2)
+ax.plot([0.35, 0.35], [DIV_Y - 0.30, DIV_Y + 0.30],
+        color='#C0392B', lw=5, solid_capstyle='round', zorder=3)
+ax.text(0.78, DIV_Y + 0.11,
+        'ETAPA DE ALARMAS (FUERA DE RANGO NORMAL)',
+        ha='left', va='bottom', fontsize=9.5, color='#922B21', fontweight='bold')
 
 # ── COMPARATORS ──────────────────────────────────────────────────────────────
 for cx, title, subs, fc, ec in [
@@ -230,6 +233,6 @@ for text, n_lines in notes:
 
 # ── SAVE ─────────────────────────────────────────────────────────────────────
 plt.tight_layout(pad=0)
-plt.savefig('diagrama_ecg_mejorado.png', dpi=180, bbox_inches='tight',
+plt.savefig('diagrama_ecg_mejorado.png', dpi=300, bbox_inches='tight',
             facecolor=fig.get_facecolor())
 print('Saved: diagrama_ecg_mejorado.png')
